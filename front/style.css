@@ -1,0 +1,101 @@
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.input-log {
+    color: red;
+}
+
+/* Заголовок */
+#header {
+    background-color: #f8f9fa;
+    padding: 20px;
+    text-align: center;
+    flex-shrink: 0;
+}
+
+/* Основной контейнер */
+#main-content {
+    display: flex;
+    flex-grow: 1;
+}
+
+/* Левая часть для графика */
+#chart {
+    flex-basis: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-right: 1px solid #ddd;
+}
+
+#graphCanvas {
+    max-width: 100%;
+    max-height: 100%;
+    border: 1px solid black;
+}
+
+/* Правая часть для формы и таблицы */
+#right-section {
+    flex-basis: 50%;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Верхняя правая часть - панель с формой */
+#panel {
+    flex-shrink: 0;
+    padding: 20px;
+    background-color: #f5f5f5;
+    border-bottom: 1px solid #ddd;
+}
+
+/* Нижняя правая часть - таблица с результатами */
+#stats {
+    flex-grow: 1;
+    padding: 20px;
+    background-color: #f5f5f5;
+    overflow-y: auto;
+}
+
+#stats-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+#stats-table th,
+#stats-table td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+}
+
+#stats-table th {
+    background-color: #f2f2f2;
+}
+
+/* Подсветка кнопки R */
+input[type="button"].selected {
+    background-color: rgb(65, 111, 240);
+    color: white;
+}
+
+/* Адаптивное поведение для узких экранов */
+@media (max-width: 900px) {
+    #main-content {
+        flex-direction: column;
+    }
+
+    #chart {
+        border-right: none;
+        border-bottom: 1px solid #ddd;
+    }
+
+    #right-section {
+        flex-basis: auto;
+    }
+}

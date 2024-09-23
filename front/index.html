@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>lab1</title>
+    <link rel="stylesheet" href="style.css">
+    <script type="text/javascript" src="script.js"></script>
+</head>
+<body>
+    <div id="header">
+        Лабораторная работа по веб-программированию №1 <br>Вариант 409517<br>Саранча Павел P3209
+    </div>
+
+    <div id="main-content">
+        <!-- Левая часть для графика <canvas id="graphCanvas" width="360" height="380"></canvas> -->
+        <div id="chart">
+            
+        </div>
+
+        <!-- Правая часть для панели и таблицы -->
+        <div id="right-section">
+            <!-- Панель с формой -->
+            <div id="panel">
+                Главная панель:
+                <form id="mainForm" type="submit" method="post" onsubmit="return checkForm(this)">
+                    <div>
+                        <label><br>Выберите значение X:</label><br>
+                        <label for="x1"><input type="checkbox" id="x1" name="x" value="2" onclick="selectCheckbox(this)"> 2</label><br>
+                        <label for="x2"><input type="checkbox" id="x2" name="x" value="1.5" onclick="selectCheckbox(this)"> 1.5</label><br>
+                        <label for="x3"><input type="checkbox" id="x3" name="x" value="1" onclick="selectCheckbox(this)"> 1</label><br>
+                        <label for="x4"><input type="checkbox" id="x4" name="x" value="0.5" onclick="selectCheckbox(this)"> 0.5</label><br>
+                        <label for="x5"><input type="checkbox" id="x5" name="x" value="0" onclick="selectCheckbox(this)"> 0</label><br>
+                        <label for="x6"><input type="checkbox" id="x6" name="x" value="-0.5" onclick="selectCheckbox(this)"> -0.5</label><br>
+                        <label for="x7"><input type="checkbox" id="x7" name="x" value="-1" onclick="selectCheckbox(this)"> -1</label><br>
+                        <label for="x8"><input type="checkbox" id="x8" name="x" value="-1.5" onclick="selectCheckbox(this)"> -1.5</label><br>
+                        <label for="x9"><input type="checkbox" id="x9" name="x" value="-2" onclick="selectCheckbox(this)"> -2</label><br><br>
+                    </div>
+                    
+                    <!-- Блок с вводом Y -->
+                    <div>
+                        <label for="y">Введите значение Y (от -5 до 3):</label><br>
+                        <input type="text" id="y" name="y" maxlength="5"><br><br>
+                    </div>
+
+                    <!-- Блок с выбором R -->
+                    <div>
+                        <label>Выберите значение R:</label><br>
+                        <input type="button" id="r1" name="r1" value="1" onclick="setR(this)">
+                        <input type="button" id="r2" name="r2" value="2" onclick="setR(this)">
+                        <input type="button" id="r3" name="r3" value="3" onclick="setR(this)">
+                        <input type="button" id="r4" name="r4" value="4" onclick="setR(this)">
+                        <input type="button" id="r5" name="r5" value="5" onclick="setR(this)"><br/><br/>
+                    </div>
+                    
+                    <!-- Скрытое поле для хранения значения R -->
+                    <input type="hidden" id="selectedR" name="r" value="">
+
+                    <div>
+                        <button type="submit" name="submit" id="mainButton">Подтвердить</button>
+                    </div>
+
+                </form>
+            </div>
+
+            <!-- Таблица с результатами -->
+            <div id="stats">
+                <table id="stats-table">
+                    <tr>
+                        <th>Факт попадания</th>
+                        <th>X</th>
+                        <th>Y</th>
+                        <th>R</th>
+                        <th>Время работы (мс)</th>
+                        <th>Время</th>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
