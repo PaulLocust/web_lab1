@@ -1,81 +1,125 @@
 <!DOCTYPE html>
-<html>
+<html lang="ru-RU">
+
 <head>
-    <meta charset="utf-8">
-    <title>lab1</title>
-    <link rel="stylesheet" href="style.css">
-    <script type="text/javascript" src="script.js"></script>
+    <meta charset="UTF-8">
+    <title>Лабораторная работа №1</title>
+    <script src="js/jquery-3.7.1.min.js"></script>
+    <link rel="stylesheet" href="css/index.css">
+    <style>
+        .selected {
+            background-color: #ccc;
+        }
+    </style>
 </head>
+
 <body>
-    <div id="header">
-        Лабораторная работа по веб-программированию №1 <br>Вариант 409517<br>Саранча Павел P3209
-    </div>
-
-    <div id="main-content">
-        <!-- Левая часть для графика <canvas id="graphCanvas" width="360" height="380"></canvas> -->
-        <div id="chart">
-            
-        </div>
-
-        <!-- Правая часть для панели и таблицы -->
-        <div id="right-section">
-            <!-- Панель с формой -->
-            <div id="panel">
-                Главная панель:
-                <form id="mainForm" type="submit" method="post" onsubmit="return checkForm(this)">
-                    <div>
-                        <label><br>Выберите значение X:</label><br>
-                        <label for="x1"><input type="checkbox" id="x1" name="x" value="2" onclick="selectCheckbox(this)"> 2</label><br>
-                        <label for="x2"><input type="checkbox" id="x2" name="x" value="1.5" onclick="selectCheckbox(this)"> 1.5</label><br>
-                        <label for="x3"><input type="checkbox" id="x3" name="x" value="1" onclick="selectCheckbox(this)"> 1</label><br>
-                        <label for="x4"><input type="checkbox" id="x4" name="x" value="0.5" onclick="selectCheckbox(this)"> 0.5</label><br>
-                        <label for="x5"><input type="checkbox" id="x5" name="x" value="0" onclick="selectCheckbox(this)"> 0</label><br>
-                        <label for="x6"><input type="checkbox" id="x6" name="x" value="-0.5" onclick="selectCheckbox(this)"> -0.5</label><br>
-                        <label for="x7"><input type="checkbox" id="x7" name="x" value="-1" onclick="selectCheckbox(this)"> -1</label><br>
-                        <label for="x8"><input type="checkbox" id="x8" name="x" value="-1.5" onclick="selectCheckbox(this)"> -1.5</label><br>
-                        <label for="x9"><input type="checkbox" id="x9" name="x" value="-2" onclick="selectCheckbox(this)"> -2</label><br><br>
-                    </div>
-                    
-                    <!-- Блок с вводом Y -->
-                    <div>
-                        <label for="y">Введите значение Y (от -5 до 3):</label><br>
-                        <input type="text" id="y" name="y" maxlength="5"><br><br>
-                    </div>
-
-                    <!-- Блок с выбором R -->
-                    <div>
-                        <label>Выберите значение R:</label><br>
-                        <input type="button" id="r1" name="r1" value="1" onclick="setR(this)">
-                        <input type="button" id="r2" name="r2" value="2" onclick="setR(this)">
-                        <input type="button" id="r3" name="r3" value="3" onclick="setR(this)">
-                        <input type="button" id="r4" name="r4" value="4" onclick="setR(this)">
-                        <input type="button" id="r5" name="r5" value="5" onclick="setR(this)"><br/><br/>
-                    </div>
-                    
-                    <!-- Скрытое поле для хранения значения R -->
-                    <input type="hidden" id="selectedR" name="r" value="">
-
-                    <div>
-                        <button type="submit" name="submit" id="mainButton">Подтвердить</button>
-                    </div>
-
-                </form>
+    <div class="content-container">
+        <header class="header">
+            <div class="header-container">
+                <div>Саранча Павел Александрович P3109</div>
+                <div></div>
+                <div>409517</div>
             </div>
-
-            <!-- Таблица с результатами -->
-            <div id="stats">
-                <table id="stats-table">
-                    <tr>
-                        <th>Факт попадания</th>
-                        <th>X</th>
-                        <th>Y</th>
-                        <th>R</th>
-                        <th>Время работы (мс)</th>
-                        <th>Время</th>
-                    </tr>
-                </table>
+        </header>
+        <main class="main">
+            <div class="main__left-column">
+                <div class="main__block">
+                    <img class="graph" src = "media/graph.png"/>
+                </div>
+                <div class="main__block">
+                    <div class="row">Параметры</div>
+                    <div class="row">
+                        <div>Выберите X:</div>
+                        <div><input name="x-value" type="radio" value="2.0">2.0</div>
+                        <div><input name="x-value" type="radio" value="1.5">1.5</div>
+                        <div><input name="x-value" type="radio" value="1.0">1.0</div>
+                        <div><input name="x-value" type="radio" value="0.5">0.5</div>
+                        <div><input name="x-value" type="radio" value="0.0">0.0</div>
+                        <div><input name="x-value" type="radio" value="-0.5">-0.5</div>
+                        <div><input name="x-value" type="radio" value="-1.0">-1.0</div>
+                        <div><input name="x-value" type="radio" value="-1.5">-1.5</div>
+                        <div><input name="x-value" type="radio" value="-2.0">-2.0</div>
+                    </div>
+                    <div class="row">
+                        <div>Выберите Y:</div>
+                        <input name="y-value" id="y-input" type="text" placeholder="значение от -5 до 3" maxlength="7">
+                    </div>
+                    <div class="row">
+                        <div>Выберите R:</div>
+                        <div><input name="r-value" type="button" value="1"></div>
+                        <div><input name="r-value" type="button" value="2"></div>
+                        <div><input name="r-value" type="button" value="3"></div>
+                        <div><input name="r-value" type="button" value="4"></div>
+                        <div><input name="r-value" type="button" value="5"></div>
+                    </div>
+                </div>
+                <button class="main__block submit_button" style="margin-bottom: 15px;" id="submit">Проверить</button>
             </div>
-        </div>
+            <div>
+                <div class="result-title">Результат</div>
+                <div class="result-container">
+                    <div style="border-top: 1px solid #000000;">Время</div>
+                    <div style="border-top: 1px solid #000000;">X</div>
+                    <div style="border-top: 1px solid #000000;">Y</div>
+                    <div style="border-top: 1px solid #000000;">R</div>
+                    <div style="border-top: 1px solid #000000;">Попал?</div>
+                    <div style="border-top: 1px solid #000000;">Время выполнения</div>
+                </div>
+                <div class="result-container" id="result"></div>
+            </div>
+        </main>
     </div>
+    <script>
+        let selectedR = null;
+        $("input[name='r-value']").on("click", function() {
+            $("input[name='r-value']").removeClass("selected");  // Убираем выделение со всех кнопок
+            $(this).addClass("selected");  // Выделяем выбранную кнопку
+            selectedR = $(this).val();  // Сохраняем значение R
+        });
+
+        $("#submit").on("click", function() {
+            let jsonData = {
+                "x": $("input[name='x-value']:checked").val(),
+                "y": $("input[name='y-value']").val(),
+                "r": selectedR
+            };
+
+            const yValue = jsonData.y;
+            const yRegex = /^-?\d+(\.\d+)?$/;  // Проверка на корректное число
+
+            if (!jsonData.x || isNaN(+jsonData.x) || !yValue || !yRegex.test(yValue) || isNaN(+jsonData.r) || +jsonData.y < -5 || +jsonData.y > 3) {
+                alert("Некорректные данные");
+                return;
+            }
+
+            $.ajax({
+                url: "/fcgi-bin/",
+                type: "POST",
+                contentType: "application/json",
+                data: JSON.stringify(jsonData),
+                dataType: "json",
+                success: function(response) {
+                    if (response.error != null) {
+                        alert("Ответ от сервера не получен");
+                        console.log(response);
+                    } else {
+                        // Вывод результатов
+                        $("#result").prepend($("<div></div>").text(response.exec_time + " ms"));
+                        $("#result").prepend($("<div></div>").text(response.result ? "Да" : "Нет"));
+                        $("#result").prepend($("<div></div>").text(jsonData.r));
+                        $("#result").prepend($("<div></div>").text(jsonData.y));
+                        $("#result").prepend($("<div></div>").text(jsonData.x));
+                        $("#result").prepend($("<div></div>").text(response.current_time.split(" ")[1]));
+                    }
+                },
+                error: function(xhr, status, error) {
+                    alert(error);
+                }
+            });
+        });
+
+    </script>
 </body>
+
 </html>

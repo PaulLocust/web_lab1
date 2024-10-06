@@ -2,6 +2,9 @@
 https://helios.cs.ifmo.ru:27527/fcgi-bin/fcgi_server.jar
 
 ssh -p 2222 -L 8080:localhost:27526 s409517@helios.cs.ifmo.ru
-cd httpd-root/fcgi-bin/
 httpd -f ~/httpd-root/conf/httpd.conf -k start
+cd httpd-root/fcgi-bin/
 java -DFCGI_PORT=27527 -jar fcgi_server.jar
+
+
+httpd -f ~/webLabs/lab1/httpd-root/conf/httpdTenoly.conf -k start

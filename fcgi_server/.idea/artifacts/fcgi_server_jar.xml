@@ -1,9 +1,0 @@
-<component name="ArtifactManager">
-  <artifact type="jar" name="fcgi_server:jar">
-    <output-path>$PROJECT_DIR$/out/artifacts/fcgi_server_jar</output-path>
-    <root id="archive" name="fcgi_server.jar">
-      <element id="module-output" name="fcgi_server" />
-      <element id="extracted-dir" path="$PROJECT_DIR$/libs/fastcgi-lib.jar" path-in-jar="/" />
-    </root>
-  </artifact>
-</component>
