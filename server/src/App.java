@@ -1,7 +1,5 @@
 import java.io.IOException;
-import java.nio.ByteBuffer;
 import java.nio.charset.StandardCharsets;
-import java.time.Duration;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
@@ -10,8 +8,11 @@ import org.json.JSONObject;
 
 public class App {
 
-    private static final String RESPONSE_TEMPLATE = "Content-Type: application/json\n" +
-            "Content-Length: %d\n\n%s";
+    private static final String RESPONSE_TEMPLATE = """
+            Content-Type: application/json
+            Content-Length: %d
+
+            %s""";
 
     public static void main(String[] args) {
         while (new FCGIInterface().FCGIaccept() >= 0) {
@@ -27,7 +28,7 @@ public class App {
                 float y = json.getFloat("y");
                 int r = json.getInt("r");
 
-                // Валидация и логика обработки Validator.validateX(x) && Validator.validateY(y) && Validator.validateR(r)
+                // Валидация и логика обработки
                 if (Validator.validateX(x) && Validator.validateY(y) && Validator.validateR(r)) {
                     long endTime = System.nanoTime();
                     long executeTime = (endTime - startTime);
@@ -47,7 +48,7 @@ public class App {
             } catch (NullPointerException e) {
                 sendJson("{\"error\": \"missed necessary query param\"}");
             } catch (Exception e) {
-                sendJson(String.format("{\"error\": \"%s\"}", e.toString()));
+                sendJson(String.format("{\"error\": \"%s\"}", e));
             }
         }
     }
@@ -82,6 +83,6 @@ public class App {
      * Метод для отправки JSON-ответа клиенту.
      */
     private static void sendJson(String jsonDump) {
-        System.out.println(String.format(RESPONSE_TEMPLATE, jsonDump.getBytes(StandardCharsets.UTF_8).length, jsonDump));
+        System.out.printf((RESPONSE_TEMPLATE) + "%n", jsonDump.getBytes(StandardCharsets.UTF_8).length, jsonDump);
     }
 }
