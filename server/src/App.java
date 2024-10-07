@@ -55,27 +55,15 @@ public class App {
 
     /**
      * Метод для чтения тела запроса FastCGI.
-     * Заполняет поток и читает данные, основываясь на Content-Length.
      */
     private static String readRequestBody() throws IOException {
-        // Заполняем поток данными
         FCGIInterface.request.inStream.fill();
-
-        // Получаем длину содержимого из доступных данных
         int contentLength = FCGIInterface.request.inStream.available();
-
-        // Если контент отсутствует
         if (contentLength <= 0) {
             return "";
         }
-
-        // Создаём буфер для данных
         byte[] requestBodyRaw = new byte[contentLength];
-
-        // Читаем данные в буфер
         int readBytes = FCGIInterface.request.inStream.read(requestBodyRaw, 0, contentLength);
-
-        // Преобразуем байты в строку
         return new String(requestBodyRaw, 0, readBytes, StandardCharsets.UTF_8);
     }
 
